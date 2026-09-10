@@ -43,3 +43,6 @@ class Ship:
         """Reposition the ship to the center"""
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
+
+        self.moving_left = False
+        self.moving_right = False
