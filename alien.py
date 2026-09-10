@@ -34,3 +34,7 @@ class Alien(Sprite):
         screen_rect = self.screen.get_rect()
         return (self.rect.right >= screen_rect.right) or (self.rect.left <= 0)
 
+    def check_bottom_edge(self):
+        """Check if the alien has hit the bottom"""
+        screen_rect = self.screen.get_rect()
+        return self.rect.top >= screen_rect.bottom
