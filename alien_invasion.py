@@ -10,6 +10,7 @@ from alien import Alien
 from star import Star
 from random import randint
 from gamestats import GameStats
+from button import Button
 
 
 class AlienInvasion:
@@ -34,7 +35,9 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
         # start the game in an active state
-        self.game_active = True
+        self.game_active = False
+        # Make the play button
+        self.button = Button(self, "Play")
 
     def run_game(self):
         """Start the main loop for the game."""
@@ -217,6 +220,10 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen)
+
+        # Draw the play button if the game_active is False
+        if not self.game_active:
+            self.button.draw_button()
 
         # Make the most recently drawn screen visible.
         pygame.display.flip()
