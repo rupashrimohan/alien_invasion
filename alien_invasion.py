@@ -76,6 +76,8 @@ class AlienInvasion:
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.game_active:
             self._start_game()
+            self.scoreboard.prep_level()
+            self.scoreboard.prep_ship()
 
     def _start_game(self):
         """Starts the game"""
@@ -181,6 +183,9 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            # level up to 1
+            self.stats.level += 1
+            self.scoreboard.prep_level()
 
     def _create_stars(self):
         """Grid of stars"""
@@ -226,6 +231,7 @@ class AlienInvasion:
         if self.gamestats.ship_left > 0:
             # Decrement the ships by 1
             self.gamestats.ship_left -= 1
+            self.scoreboard.prep_ship()
 
             # Get rid of remaining bullets and aliens
             self.bullets.empty()
